@@ -1,0 +1,35 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model user {
+  id       String @id @default(uuid())
+  name     String
+  email    String @unique
+  password String
+}
+
+model Product {
+  productId           String   @id @default(cuid()) // Unique product ID using cuid() for a string-based ID
+  productName         String   // Product Name
+  subLine             String   // Sub-line (required)
+  description         String   // Description (required)
+  oldPrice            String   // Old Price (string to match your request)
+  currentPrice        String   // Current Price (string to match your request)
+  estimatedDeliveryTime String // Estimated Delivery Time (required)
+  features            String   // Features (required)
+}
+
+
+model orders {
+ 
+  id      String @id @default(uuid())
+  proId  String
+ 
+}
